@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -11,7 +10,6 @@ using DownKyi.Core.BiliApi.Zone;
 using DownKyi.Core.FileName;
 using DownKyi.Core.Logging;
 using DownKyi.Core.Settings;
-using DownKyi.Core.Settings.Models;
 using DownKyi.Core.Utils;
 using DownKyi.Events;
 using DownKyi.Models;
@@ -92,17 +90,10 @@ public class AddToDownloadService
         _videoInfoService = videoInfoService;
     }
 
-    public void GetVideo(VideoInfoView videoInfoView, List<VideoSection> videoSections, List<int> selectedVideo)
+    public void GetVideo(VideoInfoView videoInfoView, List<VideoSection> videoSections)
     {
         _videoInfoView = videoInfoView;
         _videoSections = videoSections;
-        foreach (var section in videoSections.Where(videoSection => videoSection.IsSelected))
-        {
-            foreach (var item in section.VideoPages)
-            {
-                item.IsSelected = selectedVideo.Contains(item.Order);
-            }
-        }
     }
 
     public void GetVideo()
